@@ -1,6 +1,6 @@
 - name: install mariadb server package (CentOS)
   tags: centos,db,mariadb
-  dnf:
+  package:
     name: 
       - mariadb
     state: latest
@@ -8,7 +8,7 @@
 
 - name: install maria DB server package (Ubuntu)
   tags: mariadb,db,ubuntu
-  apt:
+  package:
     name:
       - mariadb-server
     state: latest
