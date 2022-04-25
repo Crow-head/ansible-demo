@@ -1,0 +1,48 @@
+  - name: install apache and php packages
+    tags: ubuntu,apache,packages
+    package:
+            name:
+                    - "{{ apache_ubu_name }}"
+                    - "{{ php_ubu_package }}"
+                    - tmux
+                    - atop
+            state: latest
+    when: ansible_distribution == "Ubuntu"
+
+    - name: install apache and php packages
+    tags: centos,apache,packages
+    package:
+            name:
+                    - "{{ apache_cent_name }}"
+                    - "{{ php_cent_package }}"
+                    - tmux
+                    - atop
+            state: latest
+    when: ansible_distribution == "CentOS"
+
+  - name: change apache conf file Ubuntu
+    tags: conf,ubuntu,apache2
+    lineinfile:
+            path: /etc/apache2/apache2.conf
+            regexp: '^KeepAliveTimeout'
+            line: KeepAliveTimeout 5
+    when: ansible_distribution == "Ubuntu"
+    notify: restart_apache
+
+  - name: change apache conf file CentOS
+    tags: conf,ubuntu,apache2
+    lineinfile:
+            path: /etc/httpd/conf/httpd.conf
+            regexp: '^KeepAliveTimeout'
+            line: KeepAliveTimeout 5
+    when: ansible_distribution == "CentOS"
+    notify: restart_apache
+
+  - name: copy html file on apache www directory
+    tags: ubuntu,apache,apache2
+    copy:
+            src: default_site.html
+            dest: /var/www/html/index.html
+            owner: root
+            group: root
+            mode: 0644

@@ -1,0 +1,35 @@
+- hosts: all
+  become: true
+  vars:
+         apache_cent_name: httpd
+         apache_cent_service: httpd
+         php_cent_package: php
+         apache_ubu_name: apache2
+         apache_ubu_service: apache2
+         php_ubu_package: libapache2-mod-php
+
+  pre_tasks:
+
+          - name: update repo
+            tags: always
+            apt:
+                update_cache: yes
+            changed_when: false
+            when: ansible_distribution == "Ubuntu"
+
+          - name: update repo
+            tags: always
+            yum:
+                update_cache: yes
+            changed_when: false
+            when: ansible_distribution == "CentOS"
+
+- hosts: web_server
+  become: true
+  roles:
+          - web_server
+
+- hosts: db
+  become: true
+  roles:
+          - db

@@ -1,0 +1,11 @@
+- name: restart_apache_ubuntu
+  tags: conf
+  service:
+          name: "{{ apache_ubu_service }}"
+          state: restarted
+
+- name: restart_apache_centos
+  tags: conf
+  service:
+          name: "{{ apache_cent_service }}"
+          state: restarted
