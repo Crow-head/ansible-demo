@@ -9,7 +9,7 @@
             state: latest
     when: ansible_distribution == "Ubuntu"
 
-    - name: install apache and php packages
+  - name: install apache and php packages
     tags: centos,apache,packages
     package:
             name:
