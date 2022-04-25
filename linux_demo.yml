@@ -10,26 +10,20 @@
 
   pre_tasks:
 
-          - name: update repo
+          - name: update ubuntu repo
             tags: always
             apt:
                 update_cache: yes
             changed_when: false
             when: ansible_distribution == "Ubuntu"
 
-          - name: update repo
+          - name: update centos repo
             tags: always
             yum:
                 update_cache: yes
             changed_when: false
             when: ansible_distribution == "CentOS"
 
-- hosts: web_server
-  become: true
   roles:
-          - web_server
-
-- hosts: db
-  become: true
-  roles:
-          - db
+    - web_server
+    - db
