@@ -1,6 +1,6 @@
-  - name: install apache and php packages
+  - name: install apache and php packages ubuntu
     tags: ubuntu,apache,packages
-    apt:
+    package:
             name:
                     - "{{ apache_ubu_name }}"
                     - "{{ php_ubu_package }}"
@@ -9,7 +9,7 @@
             state: latest
     when: ansible_distribution == "Ubuntu"
 
-  - name: install apache and php packages
+  - name: install apache and php packages centos
     tags: centos,apache,packages
     package:
             name:
