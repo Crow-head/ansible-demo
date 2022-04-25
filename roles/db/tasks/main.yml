@@ -11,6 +11,7 @@
   package:
     name:
       - mariadb-server
+      - mc
     state: latest
   when: ansible_distribution == "Ubuntu"
 
