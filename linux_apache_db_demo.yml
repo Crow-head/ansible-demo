@@ -25,5 +25,5 @@
             when: ansible_distribution == "CentOS"
 
   roles:
-    - web_server
-    - db
+    - linux_db_demo
+    - linux_webserver_demo
